@@ -18,3 +18,19 @@ sudo lvm lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 # Make output show the correct size of your file system
 sudo resize2fs -p /dev/mapper/ubuntu--vg-ubuntu--lv
 ```
+## Impedir desligamento notebok ao abaixar a tela
+```console
+# Ignora ação de baixar a tela
+sudo nano /etc/systemd/logind.conf
+  HandleLidSwitch=ignore
+  HandleLidSwitchExternalPower=ignore
+  HandleLidSwitchDocked=ignore
+sudo systemctl restart systemd-logind.service
+
+# Desliga a tela após 300s
+sudo nano /etc/default/grub
+  GRUB_CMDLINE_LINUX="consoleblank=300"
+sudo update-grub
+
+
+```
