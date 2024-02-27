@@ -34,3 +34,13 @@ sudo update-grub
 
 
 ```
+
+## Configure Proxmox for lower power usage ([link](https://community.home-assistant.io/t/psa-how-to-configure-proxmox-for-lower-power-usage/323731))
+```console
+# list of available CPU governor states
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors
+
+# enable a more power efficient state
+echo "powersave" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+
+```
