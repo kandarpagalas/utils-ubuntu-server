@@ -44,3 +44,19 @@ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors
 echo "powersave" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 
 ```
+
+## Enable Wake on LAN ([artigo](https://www.golinuxcloud.com/wake-on-lan-ubuntu/))
+```bash
+## get card name and MAC Address
+ip a
+## card supports?
+sudo ethtool enp2s0
+# >>> Wake-on: d
+
+## Enable
+sudo ethtool -s <enp2s0> wol g
+# >>> Wake-on: g
+
+## Send magic packet
+sudo wakeonlan 30:5a:3a:0d:ac:0d
+```
