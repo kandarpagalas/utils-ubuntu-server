@@ -45,6 +45,17 @@ echo "powersave" | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 
 ```
 
+## Configure Proxmox volumes
+```console
+# remove local-lvm
+
+# enable a more power efficient state
+lvremove /dev/pve/data
+lvresize -l +100%FREE /dev/pve/root
+resize2fs /dev/mapper/pve-root
+
+```
+
 ## Enable Wake on LAN ([artigo](https://www.golinuxcloud.com/wake-on-lan-ubuntu/))
 ```bash
 ## get card name and MAC Address
