@@ -56,6 +56,27 @@ resize2fs /dev/mapper/pve-root
 
 ```
 
+## Run powertop --auto-tune after boot
+```console
+cat << EOF | tee /etc/systemd/system/powertop.service
+[Unit]
+Description=PowerTOP auto tune
+
+[Service]
+Type=oneshot
+Environment="TERM=dumb"
+RemainAfterExit=true
+ExecStart=/usr/sbin/powertop --auto-tune
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable powertop.service
+
+```
+
 ## Enable Wake on LAN ([artigo](https://www.golinuxcloud.com/wake-on-lan-ubuntu/))
 ```bash
 ## get card name and MAC Address
