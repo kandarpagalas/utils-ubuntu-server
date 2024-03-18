@@ -34,6 +34,18 @@ sudo update-grub
 
 
 ```
+## Remove subscription notice
+```console
+# list of available CPU governor states
+cd /usr/share/javascript/proxmox-widget-toolkit/
+cp proxmoxlib.js proxmoxlib.js.bak
+nano proxmoxlib.js
+>> ctrl + w -> if(res ==
+>>> change to if (false)
+systemctl restart pveproxy
+
+```
+
 
 ## Configure Proxmox for lower power usage ([link](https://community.home-assistant.io/t/psa-how-to-configure-proxmox-for-lower-power-usage/323731))
 ```console
