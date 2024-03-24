@@ -104,3 +104,15 @@ sudo ethtool -s <enp2s0> wol g
 ## Send magic packet
 sudo wakeonlan 30:5a:3a:0d:ac:0d
 ```
+
+## Enable iommu proxmox ([artigo](https://forum.proxmox.com/threads/pci-gpu-passthrough-on-proxmox-ve-8-installation-and-configuration.130218/))
+```
+nano /etc/default/grub
+# For AMD
+>> GRUB_CMDLINE_LINUX_DEFAULT="quiet  iommu=pt"
+
+# For Intel
+>> GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"
+
+update-grub
+```
