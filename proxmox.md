@@ -17,3 +17,8 @@ sudo systemctl restart pvedaemon
 sudo systemctl restart pveproxy
 systemctl restart pvestatd
 ```
+
+## Apply Network Changes
+```bash
+ifreload -a
+```
