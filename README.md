@@ -116,3 +116,9 @@ nano /etc/default/grub
 
 update-grub
 ```
+
+## DNS File
+```
+# DNS
+nano /etc/resolv.conf
+```
