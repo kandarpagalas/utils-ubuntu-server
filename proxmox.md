@@ -22,3 +22,23 @@ systemctl restart pvestatd
 ```bash
 ifreload -a
 ```
+
+
+## Home Assistant
+```bash
+# Adicionar USB ao container
+no arquivo /etc/pve/lxc/<id do container>.conf
+lxc.cgroup2.devices.allow: c 188:* rwm
+lxc.mount.entry: /dev/ttyUSB0 dev/ttyUSB0 none bind,optional,create=file
+
+# Corrigir chmod usb.
+No nó do proxmox executa
+sh chmod a+rwx /dev/ttyUSB0
+
+# Corrigir conexão claudflare
+No arquivo configuration.yaml, adiciona
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+  - 172.18.0.1 # Ip do proxy que está sendo bloqueado
+```
